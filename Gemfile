@@ -33,6 +33,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
+  gem 'sextant'
+  gem 'haml-rails', '>= 0.3.4'
 end
 
 

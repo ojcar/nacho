@@ -13,7 +13,7 @@ class Feed < ActiveRecord::Base
 	end
 	
 	class << self
-	  def create_from_subscription(target_url)
+	  def create_from_feed(target_url)
 	  	target = Feedzirra::Feed.fetch_and_parse(target_url)
 
 	  	unless target.nil?
@@ -35,8 +35,8 @@ class Feed < ActiveRecord::Base
 		def create_entries_from_feed(feed) 
 			feed.entries.each do |entry|
 				self.feed_entries.find_or_create_by_guid(
-		        :title         => entry.title,
-		        :content      => entry.summary,
+		        :title        => entry.title,
+		        :content      => entry.content.present? ? entry.content : entry.summary,
 		        :url          => entry.url,
 		        :author				=> entry.author,
 		        :published_at => entry.published,

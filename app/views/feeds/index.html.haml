@@ -1,0 +1,20 @@
+.row
+  .span2.sidebar
+    %ul.nav.nav-list
+      %li.nav-header List header
+      -@feeds.each do |feed|
+        %li=link_to feed.title, feed_path(feed)
+
+  .span10
+    -@feeds.each do |feed|
+      -feed.feed_entries.each do |e|
+
+        .row.entry
+          .span7
+            / %h2=link_to e.title.html_safe, e.url
+            %h2=e.title.html_safe
+            .content=e.content.html_safe
+          .span2.offset1.meta
+            =e.published_at
+
+  

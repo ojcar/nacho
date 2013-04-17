@@ -9,6 +9,27 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require cosmo/loader
  *= require_tree .
  */
-//= require flat-ui
+
+ /*body {
+  margin-top:22px;
+  background-color:#ddd;
+ }
+
+ .entry {
+  background-color:#fff;
+  padding: 15px;
+  margin-bottom: 22px;
+ }
+
+ .inline-form input {
+  margin-bottom: 0px;
+ }
+ 
+ .sidebar {
+  font-family: monaco, monospace;
+  font-size: smaller;
+  /*position:fixed;*/
+ }*/

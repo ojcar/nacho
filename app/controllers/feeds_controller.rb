@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  # layout 'cosmo'
+  layout 'feeds'
   
   def index
     @feeds = Feed.includes(:feed_entries).all
@@ -11,10 +11,10 @@ class FeedsController < ApplicationController
   end
 
   def show
-    @feed = Feed.find(params[:id])
+    @feed = Feed.includes(:feed_entries).find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: !request.xhr? }
       format.json { render json: @feed }
     end
   end

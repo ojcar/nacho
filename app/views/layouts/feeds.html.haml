@@ -1,0 +1,17 @@
+=render :partial => 'layouts/header'
+
+.container
+  .row
+    %p#notice= notice
+  .row
+    .span2.sidebar
+      =link_to 'something', feed_path(Feed.last), :remote => true, :class => 'load-feed'
+      / %ul.nav.nav-list
+      /   %li.nav-header List header
+        
+      /   -@feeds.each do |feed|
+      /     %li=link_to feed.title, feed_path(feed)
+    #main.span10.offset2
+      =yield
+
+=render :partial => 'layouts/footer'

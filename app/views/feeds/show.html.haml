@@ -1,6 +1,16 @@
-%p#notice= notice
+#feed
+  .row
+    .subnav
+      %ul.breadcrumb
+        %li
+          =link_to @feed.title, @feed.url
+          %span.divider /
+        %li
+          ="Last Modified: #{@feed.last_modified}"
+        %li.pull-right
+          =link_to 'Edit', edit_feed_path(@feed), :class => 'btn btn-small btn-inverse'
 
+  #main
+    -@feed.feed_entries.each do |e|
+      =render :partial => 'feed_entry', :locals => {:e => e}
 
-= link_to 'Edit', edit_feed_path(@feed)
-\|
-= link_to 'Back', feeds_path

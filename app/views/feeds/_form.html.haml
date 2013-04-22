@@ -1,10 +1,37 @@
-= form_for @feed do |f|
-  - if @feed.errors.any?
+=form_for @feed, :html => {:class => 'form-horizontal'} do |f|
+  -if @feed.errors.any?
     #error_explanation
       %h2= "#{pluralize(@feed.errors.count, "error")} prohibited this feed from being saved:"
       %ul
         - @feed.errors.full_messages.each do |msg|
           %li= msg
 
-  .actions
-    = f.submit 'Save'
+  .control-group
+    =f.label :title, :class => 'control-label'
+    .controls.form-field
+      =@feed.title
+
+  .control-group
+    =f.label :last_modified, :class => 'control-label'
+    .controls.form-field
+      =@feed.last_modified
+
+  .control-group
+    =f.label :url, :class => 'control-label'
+    .controls
+      =f.text_field :url, :class => 'span7'
+
+  .control-group
+    =f.label :feed_url, :class => 'control-label'
+    .controls
+      =f.text_field :feed_url, :class => 'span7'
+
+  .control-group
+    =f.label :subscribed_url, :class => 'control-label'
+    .controls
+      =f.text_field :subscribed_url, :class => 'span7'
+
+  .control-group
+    .controls
+      =f.submit 'Save Changes', :class => 'btn btn-primary'
+      =link_to 'Cancel', feed_path(@feed), :class => 'btn'

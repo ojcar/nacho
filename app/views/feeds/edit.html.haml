@@ -1,7 +1,2 @@
-%h1 Editing feed
-
-= render 'form'
-
-= link_to 'Show', @feed
-\|
-= link_to 'Back', feeds_path
+%h2 Edit feed: "#{@feed.title}"
+=render 'form'

@@ -16,3 +16,14 @@
  .meta {
   margin-top: 20px;
  }
+
+ .sidebar {
+  font-family: monaco, monospace;
+  font-size: smaller;
+  position:fixed;
+  overflow:auto;
+ }
+
+ .form-horizontal .form-field {
+  padding-top:5px;
+ }

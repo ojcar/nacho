@@ -1,4 +1,6 @@
 class Feed < ActiveRecord::Base
+  acts_as_taggable_on :folders
+	
   attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url
   
   has_many :feed_entries, :dependent => :destroy

@@ -2,8 +2,6 @@
 
 .container
   .row
-    %p#notice= notice
-  .row
     .span2.sidebar
       =link_to 'something', feed_path(Feed.last), :remote => true, :class => 'load-feed'
       / %ul.nav.nav-list

@@ -32,6 +32,12 @@
       =f.text_field :subscribed_url, :class => 'span7'
 
   .control-group
+    =f.label :folders, :class => 'control-label'
+    .controls
+      =f.text_field :folders, :class => 'span7'
+      %span.help-block A comma separated list
+
+  .control-group
     .controls
       =f.submit 'Save Changes', :class => 'btn btn-primary'
       =link_to 'Cancel', feed_path(@feed), :class => 'btn'

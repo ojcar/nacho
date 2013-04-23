@@ -1,8 +1,10 @@
 class FeedsController < ApplicationController
+  before_filter :authenticate_user!
   layout 'feeds'
   
   def index
     @feeds = Feed.includes(:feed_entries).all
+    # @folders = current_user.owned_tags
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,6 +39,8 @@ class FeedsController < ApplicationController
 
     respond_to do |format|
       if @feed.save
+        current_user.tag(@feed, with: params[:feed][:folders], on: :folders) if params[:feed][:folders].present?
+
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
       else

@@ -12,5 +12,5 @@
 
   #main
     -@feed.feed_entries.each do |e|
-      =render :partial => 'feed_entry', :locals => {:e => e}
+      =render :partial => 'feed_entry', :locals => {:entry => e}
 

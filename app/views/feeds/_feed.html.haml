@@ -1,0 +1,9 @@
+%tr
+  %td
+    =link_to feed.title, feed.url
+  %td
+    Folders
+  %td
+    =link_to 'Edit', edit_feed_path(feed)
+  %td
+    =link_to 'Unsubscribe', feed_path(feed), :method => :delete

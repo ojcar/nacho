@@ -15,7 +15,7 @@
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="images/favicon.ico" rel="shortcut icon")
+    %link(href="/assets/favicon.ico" rel="shortcut icon")
 
 
   %body
@@ -32,11 +32,9 @@
                 %li=link_to 'logout', destroy_user_session_path, :method => :delete
               - else
                 %li=link_to 'login', new_user_session_path
-
-
-          %form.navbar-form.pull-right
-            %input
-            %button.btn.btn-primary Subscribe
+          
+          .pull-right
+            %button.btn.btn-primary{'data-toggle' => 'modal', 'data-target' => '#new-feed-modal'} Add Feed
 
     -if flash.present?
       .container

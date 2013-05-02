@@ -1,3 +1,10 @@
--@feeds.each do |feed|
-  -feed.feed_entries.each do |e|
-    =render :partial => 'feed_entry', :locals => { :e => e }
+%table.table.table-striped
+  %thead
+    %tr
+      %th Feed List
+      %th Folders
+      %th
+      %th
+
+  %tbody
+  =render @feeds || 'No feeds available'

@@ -82,6 +82,10 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    handlebars_assets (0.12.0)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -188,6 +192,7 @@ DEPENDENCIES
   flat-ui-rails
   haml
   haml-rails (>= 0.3.4)
+  handlebars_assets
   jquery-rails
   less-rails
   mysql2

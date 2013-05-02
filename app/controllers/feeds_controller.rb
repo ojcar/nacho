@@ -3,8 +3,10 @@ class FeedsController < ApplicationController
   layout 'feeds'
   
   def index
-    @feeds = Feed.includes(:feed_entries).all
+    # @feeds = Feed.includes(:feed_entries).order('feed_entries.published_at DESC').all
     # @folders = current_user.owned_tags
+    # @feed_entries = FeedEntry.includes(:feed).order('published_at DESC').all
+    @feeds = Feed.includes(:feed_entries).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,10 +16,10 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.includes(:feed_entries).find(params[:id])
-
+    
     respond_to do |format|
       format.html { render layout: !request.xhr? }
-      format.json { render json: @feed }
+      format.json { render json: { entries: @feed.feed_entries } }
     end
   end
 
@@ -35,11 +37,11 @@ class FeedsController < ApplicationController
   end
 
   def create
-    @feed = Feed.new(params[:feed])
+    @feed = Feed.create_from_feed(params[:feed][:subscribed_url])
 
     respond_to do |format|
-      if @feed.save
-        current_user.tag(@feed, with: params[:feed][:folders], on: :folders) if params[:feed][:folders].present?
+      if !@feed.nil?
+        current_user.tag(@feed, with: params[:feed][:folder_list], on: :folders) if params[:feed][:folder_list].present?
 
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
@@ -53,6 +55,7 @@ class FeedsController < ApplicationController
   def update
     @feed = Feed.find(params[:id])
 
+    #TODO Fix tag update for current_user owned
     respond_to do |format|
       if @feed.update_attributes(params[:feed])
         format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }

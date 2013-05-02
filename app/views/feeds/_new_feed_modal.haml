@@ -1,0 +1,16 @@
+#new-feed-modal.modal.hide.fade
+  =form_for :feed do |f|
+    .modal-header
+      %button.close{'data-dismiss' => 'modal'} x
+      %h3 Add Feed
+
+    .modal-body
+      =f.label :subscribed_url
+      =f.text_field :subscribed_url, :class => 'span4'
+
+      =f.label :folders
+      =f.text_field :folders, :class => 'span4'
+
+    .modal-footer
+      %button.btn{'data-dismiss' => 'modal'} Close
+      =f.submit 'Save Changes', :class => 'btn btn-primary'

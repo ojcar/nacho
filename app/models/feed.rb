@@ -1,9 +1,9 @@
 class Feed < ActiveRecord::Base
   acts_as_taggable_on :folders
 	
-  attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url
+  attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url, :folder_list
   
-  has_many :feed_entries, :dependent => :destroy
+  has_many :feed_entries, :dependent => :destroy, :order => 'published_at DESC'
 
   #TODO: make a better unique url validator
   validates :feed_url, :presence => true, :uniqueness => true
@@ -29,6 +29,8 @@ class Feed < ActiveRecord::Base
 
 	  		# create entries right away
 	  		f.update_entries(target) if f.present?
+
+	  		return f
 	  	end
 	  end
 	end

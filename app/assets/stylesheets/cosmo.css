@@ -11,6 +11,7 @@
   margin-bottom: 60px;
   padding-bottom: 30px;
   border-bottom:1px dotted #ddd;
+  overflow: auto;
  }
 
  .meta {
@@ -26,4 +27,24 @@
 
  .form-horizontal .form-field {
   padding-top:5px;
+ }
+
+ .post .date {
+  width:80px;
+  float:left;
+  /*font-family:arial,sans-serif;*/
+ }
+
+ .post .content {
+  float:left;
+  width:75%;
+  /*font-family:arial,sans-serif;*/
+ }
+
+ .post .content a {
+  font-weight: bold;
+ }
+
+ .post .meta {
+  font-size: smaller;
  }

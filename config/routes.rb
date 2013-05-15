@@ -4,8 +4,10 @@ Nacho::Application.routes.draw do
   devise_for :users
 
   resources :feeds
-
+  resources :posts
+  
   match '/reader/tag/:id' => 'reader#tag'
+  match '/reader/mark_read/' => 'reader#mark_read'
   
   root :to => 'reader#index'
 

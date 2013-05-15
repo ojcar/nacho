@@ -1,4 +1,6 @@
 class Feed < ActiveRecord::Base
+	MAX_THREADS = 5
+
   acts_as_taggable_on :folders
 	
   attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url, :folder_list
@@ -33,6 +35,45 @@ class Feed < ActiveRecord::Base
 	  		return f
 	  	end
 	  end
+
+	  # def update_feeds
+	  # 	feeds = Feed.all
+	  # 	feeds.each {|f| f.update_entries}
+	  # end
+
+	  def update_feeds
+	  	feeds = Feed.all
+	  	Feed.updater(feeds) { |f| f.update_entries }
+	  end
+
+	  def updater(*args)
+      items = args[0]
+      todo  = Queue.new
+
+      threads = (1..MAX_THREADS).map do |t|
+        Thread.new do
+          until ((item = todo.deq) == :END)
+            yield item
+            ActiveRecord::Base.connection.close
+          end
+        end
+      end
+
+      items.each {|i| todo.enq(i)}
+      threads.size.times {todo.enq :END}
+
+      threads.each do |t|
+        begin
+          t.join
+        rescue => e
+        	Rails.logger.info "****************************"
+        	Rails.logger.info "EXCEPTION IN UPDATER"
+          Rails.logger.info e.message
+          Rails.logger.info e.backtrace
+          raise e
+        end
+      end
+	  end # -end
 	end
 
 	protected

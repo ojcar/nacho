@@ -1,0 +1,16 @@
+-@posts_by_day.each do |day,posts|
+  .row.post
+    .date
+      =day.to_date.to_formatted_s(:db)
+    .content
+      %ul.unstyled
+        -posts.each do |p|
+          %li
+            =link_to p.title, p.link
+            -if p.body.present?
+              %br
+              =p.body
+
+            %span.meta.keywords=p.keywords.collect(&:name).join(' / ')
+.row
+  =will_paginate @posts, :next_label => "flop &rarr;", :previous_label => "&larr; flip"

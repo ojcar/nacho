@@ -5,4 +5,6 @@
 //= require cosmo/loader
 //= require nacho
 //= require handlebars.runtime
+//= require waypoints.min
+//= require jquery.jknavigable
 //= require_tree ./templates

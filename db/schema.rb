@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422070856) do
+ActiveRecord::Schema.define(:version => 20130505043735) do
 
   create_table "feed_entries", :force => true do |t|
     t.string   "title"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(:version => 20130422070856) do
     t.string   "guid"
     t.string   "author"
     t.integer  "feed_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "read",         :default => false
   end
 
   add_index "feed_entries", ["feed_id"], :name => "index_feed_entries_on_feed_id"
@@ -35,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20130422070856) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "subscribed_url"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "link"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "taggings", :force => true do |t|

@@ -16,3 +16,33 @@
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="/assets/favicon.ico" rel="shortcut icon")
+
+
+  %body
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container
+          
+          %a.brand blogactivo
+
+          .nav-collapse
+            %ul.nav
+              - if user_signed_in?
+                %li=link_to current_user.email, edit_user_password_path
+                %li=link_to 'logout', destroy_user_session_path, :method => :delete
+              - else
+                %li=link_to 'login', new_user_session_path
+          
+          .pull-right
+            %button.btn.btn-primary{'data-toggle' => 'modal', 'data-target' => '#new-post-modal'} Post
+            %button.btn.btn-primary{'data-toggle' => 'modal', 'data-target' => '#new-feed-modal'} Subscribe
+
+    -if flash.present?
+      .container
+        .row
+          -if flash[:notice].present?
+            %p#notice.alert.alert-success= notice
+          -if flash[:error].present?
+            %p#error.alert-error= error
+          -if flash[:warning].present?
+            %p#warning.alert= warning

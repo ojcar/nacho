@@ -1,0 +1,22 @@
+#new-post-modal.modal.hide.fade
+  =form_for(Post.new, :remote => true, :html => {:'data-type' => 'json', :id => 'new-post-form'}) do |f|
+    .modal-header
+      %button.close{'data-dismiss' => 'modal'} x
+      %h3 Create Post
+
+    .modal-body
+      =f.label :title
+      =f.text_field :title, :class => 'span4'
+
+      =f.label :link
+      =f.text_field :link, :class => 'span4'
+
+      =f.label :body
+      =f.text_area :body, :cols => 10, :rows => 4, :class => 'span4'
+
+      =label 'tags_list','tags_list'
+      =text_field_tag 'tags', f.object.keyword_list, :class => 'span4'
+
+    .modal-footer
+      %button.btn{'data-dismiss' => 'modal'} Close
+      =f.submit 'Save', :class => 'btn btn-primary'

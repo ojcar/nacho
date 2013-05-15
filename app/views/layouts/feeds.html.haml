@@ -1,19 +1,42 @@
 =render :partial => 'layouts/header'
 
+%body
+  .navbar.navbar-inverse
+    .navbar-inner
+      .container
+        
+        %a.brand blogactivo
+
+        .nav-collapse
+          %ul.nav
+            - if user_signed_in?
+              %li=link_to current_user.email, edit_user_password_path
+              %li=link_to 'logout', destroy_user_session_path, :method => :delete
+            - else
+              %li=link_to 'login', new_user_session_path
+        
+        .pull-right
+          %button.btn.btn-primary{'data-toggle' => 'modal', 'data-target' => '#new-post-modal'} Post
+          %button.btn.btn-primary{'data-toggle' => 'modal', 'data-target' => '#new-feed-modal'} Subscribe
+
+  -if flash.present?
+    .container
+      .row
+        -if flash[:notice].present?
+          %p#notice.alert.alert-success= notice
+        -if flash[:error].present?
+          %p#error.alert-error= error
+        -if flash[:warning].present?
+          %p#warning.alert= warning
+
 .container
   .row
     .span2.sidebar
       =yield :sidebar
-
-      / =link_to 'something', feed_path(Feed.last, :format => :json), :remote => true, :class => 'load-feed'
-      / %ul.nav.nav-list
-      /   %li.nav-header List header
-        
-      /   -@feeds.each do |feed|
-      /     %li=link_to feed.title, feed_path(feed)
     #main.span10.offset2
       =yield
 
 =render :partial => 'layouts/footer'
 
 =render :partial => 'feeds/new_feed_modal'
+=render :partial => 'posts/new_post_modal'

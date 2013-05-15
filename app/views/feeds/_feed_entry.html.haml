@@ -1,4 +1,4 @@
-.row.entry
+.row.entry{"data-entry"=>"#{entry.id}"}
   .span7
     %h2=entry.title.html_safe rescue ''
     .content=entry.content.html_safe rescue ''

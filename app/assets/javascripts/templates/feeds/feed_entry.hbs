@@ -1,13 +1,13 @@
 {{#each entries}}
-  <div class="row entry">
+  <div class="row entry" data-entry="{{id}}">
     <div class="span7">
-      <h2>{{title}}</h2>
+      <h2><a href="{{url}}">{{title}}</a></h2>
       <div class="content">{{{content}}}</div>
     </div>
-    <div class="span2 offset meta">
+    <div class="span3 meta">
       {{published_at}}
       <hr>
-      <a href="{{url}}">{{title}}</a>
+      From: <a href="{{feed.url}}">{{feed.title}}</a>
       <hr>
     </div>
   </div>

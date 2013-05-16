@@ -12,6 +12,7 @@ gem 'strong_parameters'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'draper'
 gem 'feedzirra'
+gem 'whenever'
 
 gem 'jquery-rails'
 gem 'flat-ui-rails'

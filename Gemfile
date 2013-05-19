@@ -10,7 +10,7 @@ gem 'devise'
 gem 'cancan'
 gem 'strong_parameters'
 gem 'acts-as-taggable-on', '~> 2.3.1'
-gem 'draper'
+# gem 'draper'
 gem 'feedzirra'
 gem 'whenever'
 

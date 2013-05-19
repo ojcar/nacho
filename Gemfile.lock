@@ -64,10 +64,6 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    draper (1.2.0)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -152,7 +148,6 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
-    request_store (1.0.5)
     sax-machine (0.0.20)
       nokogiri (> 0.0.0)
     sextant (0.2.3)
@@ -207,7 +202,6 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   devise
-  draper
   feedzirra
   flat-ui-rails
   haml

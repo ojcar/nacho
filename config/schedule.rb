@@ -19,6 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
+env :MAILTO, 'oyevega@gmail.com'
+
 every 12.hours do
   rake "feeds:update"
 end

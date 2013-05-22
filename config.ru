@@ -1,12 +1,2 @@
-# Dreamhost nonsense
-# DreamHost Passenger knows nothing about users GEM_PATH
-
-# ENV['GEM_HOME']="#{ENV['HOME']}/.gems"
-# ENV['GEM_PATH']="#{ENV['GEM_HOME']}"
-# require 'rubygems'
-# Gem.clear_paths
-
-# This file is used by Rack-based servers to start the application.
-
 require ::File.expand_path('../config/environment',  __FILE__)
 run Nacho::Application

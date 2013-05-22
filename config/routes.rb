@@ -1,15 +1,18 @@
 Nacho::Application.routes.draw do
-  get "reader/index"
+  root :to => 'posts#index'
+  
+  # get "reader/index"
 
   devise_for :users
 
   resources :feeds
   resources :posts
   
+  match '/reader' => 'reader#index'
   match '/reader/tag/:id' => 'reader#tag'
   match '/reader/mark_read/' => 'reader#mark_read'
   
-  root :to => 'reader#index'
+  #root :to => 'reader#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

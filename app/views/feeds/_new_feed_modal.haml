@@ -1,5 +1,5 @@
 #new-feed-modal.modal.hide.fade
-  =form_for(Feed.new) do |f|
+  =form_for(Feed.new, :remote => true, :html => {:'data-type' => 'json', :id => 'new-feed-form'}) do |f|
     .modal-header
       %button.close{'data-dismiss' => 'modal'} x
       %h3 Add Feed
@@ -9,7 +9,7 @@
       =f.text_field :subscribed_url, :class => 'span4'
 
       =f.label :folders
-      =f.text_field :folders, :class => 'span4'
+      =text_field_tag :word_list, get_word_list, :class => 'span4'
 
     .modal-footer
       %button.btn{'data-dismiss' => 'modal'} Close

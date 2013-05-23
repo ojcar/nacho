@@ -1,7 +1,16 @@
 .row.entry{"data-entry"=>"#{entry.id}"}
   .span7
-    %h2=entry.title.html_safe rescue ''
+    %h2
+      =link_to entry.title.html_safe, entry.url rescue ''  
     .content=entry.content.html_safe rescue ''
-  .span2.offset1.meta
-    =entry.published_at rescue ''
-    =link_to entry.feed.title, entry.feed.url
+  
+  .span3.meta
+    =link_to 'Post', '#', :method => :post, :remote => true, :class => 'btn btn-inverse btn-small post-entry'
+    %hr
+    %ul.unstyled
+      %li 
+        Posted: 
+        =entry.published_at.to_date.to_formatted_s(:db) rescue 'Unknown'
+      %li
+        From:
+        =link_to entry.feed.title, entry.feed.url rescue 'Unknown'

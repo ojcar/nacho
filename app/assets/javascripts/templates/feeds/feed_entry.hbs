@@ -5,10 +5,12 @@
       <div class="content">{{{content}}}</div>
     </div>
     <div class="span3 meta">
-      {{published_at}}
+      <a href="#" class="btn btn-inverse btn-small post-entry" data-method="post" data-remote="true" rel="nofollow">Post</a>
       <hr>
-      From: <a href="{{feed.url}}">{{feed.title}}</a>
-      <hr>
+      <ul class="unstyled">
+        <li>Posted: {{published_at}}</li>
+        <li>From: <a href="{{feed.title}}">{{feed.url}}</a></li>
+      </ul>
     </div>
   </div>
 {{/each}}

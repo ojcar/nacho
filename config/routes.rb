@@ -1,6 +1,6 @@
 Nacho::Application.routes.draw do
   root :to => 'posts#index'
-  
+
   # get "reader/index"
 
   devise_for :users

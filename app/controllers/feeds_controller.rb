@@ -37,17 +37,22 @@ class FeedsController < ApplicationController
   end
 
   def create
+  # raise params.inspect
     @feed = Feed.create_from_feed(params[:feed][:subscribed_url])
 
     respond_to do |format|
       if !@feed.nil?
-        current_user.tag(@feed, with: params[:feed][:folder_list], on: :folders) if params[:feed][:folder_list].present?
+        current_user.tag(@feed, :with => params[:word_list], :on => :folders) if params[:word_list].present?
+        # current_user.tag(@feed, :with => params[:feed][:folder_list], :on => :folders) if params[:feed][:folder_list].present?
 
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
       else
+        flash[:error] = "Error creating feed"
+        @feed = Feed.new(params[:feed])
+
         format.html { render action: "new" }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
+        format.json { render json: @feed, status: :unprocessable_entity }
       end
     end
   end

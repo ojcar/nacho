@@ -34,7 +34,7 @@
   .control-group
     =f.label :folder_list, :class => 'control-label'
     .controls
-      =f.text_field :folder_list, :class => 'span7'
+      =text_field_tag :word_list, get_word_list, :class => 'span7'
       %span.help-block A comma separated list
 
   .control-group

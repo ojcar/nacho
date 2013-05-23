@@ -3,7 +3,7 @@ class Feed < ActiveRecord::Base
 
   acts_as_taggable_on :folders
 	
-  attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url, :folder_list
+  attr_accessible :feed_url, :subscribed_url, :last_modified, :title, :url, :folders
   
   has_many :feed_entries, :dependent => :destroy, :order => 'published_at DESC'
 
@@ -19,21 +19,22 @@ class Feed < ActiveRecord::Base
 	class << self
 	  def create_from_feed(target_url)
 	  	target = Feedzirra::Feed.fetch_and_parse(target_url)
+      return nil if target.nil?
 
-	  	unless target.nil?
-	  		f = create(
-	  			:url 						=> target.url,
-	  			:feed_url 			=> target.feed_url,
-	  			:subscribed_url => target_url,
-	  			:title 					=> target.title,
-	  			:last_modified 	=> target.last_modified
-	  		)
+  		f = create(
+  			:url 						=> target.url,
+  			:feed_url 			=> target.feed_url,
+  			:subscribed_url => target_url,
+  			:title 					=> target.title,
+  			:last_modified 	=> target.last_modified
+  		)
 
-	  		# create entries right away
-	  		f.update_entries(target) if f.present?
+	  	# create entries right away
+      if f.present?
+	  		f.update_entries(target)
+      end
 
-	  		return f
-	  	end
+  		f
 	  end
 
 	  # def update_feeds

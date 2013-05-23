@@ -10,7 +10,7 @@
     %ul.unstyled
       %li 
         Posted: 
-        =entry.published_at rescue ''
+        =entry.published_at.to_date.to_formatted_s(:db) rescue 'Unknown'
       %li
         From:
-        =link_to entry.feed.title, entry.feed.url
+        =link_to entry.feed.title, entry.feed.url rescue 'Unknown'

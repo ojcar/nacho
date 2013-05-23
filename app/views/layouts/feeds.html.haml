@@ -5,11 +5,14 @@
     .navbar-inner
       .container
         
-        %a.brand blogactivo
+        / %a.brand blogactivo
+        =link_to 'blogactivo', root_path, :class => 'brand'
 
         .nav-collapse
           %ul.nav
             - if user_signed_in?
+              %li=link_to 'posts', root_path
+              %li=link_to 'reader', reader_path
               %li=link_to current_user.email, edit_user_password_path
               %li=link_to 'logout', destroy_user_session_path, :method => :delete
             - else
@@ -23,11 +26,11 @@
     .container
       .row
         -if flash[:notice].present?
-          %p#notice.alert.alert-success= notice
+          %p#notice.alert.alert-success= flash[:notice]
         -if flash[:error].present?
-          %p#error.alert-error= error
+          %p#error.alert-error= flash[:error]
         -if flash[:warning].present?
-          %p#warning.alert= warning
+          %p#warning.alert= flash[:warning]
 
 .container
   .row

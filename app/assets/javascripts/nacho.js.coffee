@@ -35,6 +35,13 @@ $('document').ready ->
       errors = $.parseJSON(xhr.responseText)
       $('#new-post-modal').append("<div class='alert'>#{errors}</div>")
 
+  # handle subscribe form
+  $('#new-feed-form').on
+    'ajax:success':(xhr,data) ->
+      $('#new-feed-modal').modal('hide')
+    'ajax:error': (xhr,data) ->
+      errors = $.parseJSON(xhr.responseText)
+      $('#new-feed-modal').append("<div class='alert'>#{errors}</div>")
 
   # Populate post fields from a feed entry
   $('.post-entry').click (e) ->

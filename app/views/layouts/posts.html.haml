@@ -1,20 +1,15 @@
 =render :partial => 'layouts/header'
 
-%body
-  .navbar.navbar-inverse
-    .navbar-inner
-      .container
-        =link_to 'blogactivo', '/', :class => 'brand'
-
-    -if flash.present?
-      .container
-        .row
-          -if flash[:notice].present?
-            %p#notice.alert.alert-success= notice
-          -if flash[:error].present?
-            %p#error.alert-error= error
-          -if flash[:warning].present?
-            %p#warning.alert= warning
+%body{:style => 'margin-top:40px;'}
+  -if flash.present?
+    .container
+      .row
+        -if flash[:notice].present?
+          %p#notice.alert.alert-success= notice
+        -if flash[:error].present?
+          %p#error.alert-error= error
+        -if flash[:warning].present?
+          %p#warning.alert= warning
 
   .container
     =yield

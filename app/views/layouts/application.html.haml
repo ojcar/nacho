@@ -6,15 +6,15 @@
       .container
         =link_to 'blogactivo', '/', :class => 'brand'
 
-    -if flash.present?
-      .container
-        .row
-          -if flash[:notice].present?
-            %p#notice.alert.alert-success= notice
-          -if flash[:error].present?
-            %p#error.alert-error= error
-          -if flash[:warning].present?
-            %p#warning.alert= warning
+  -if flash.present?
+    .container
+      .row
+        -if flash[:notice].present?
+          %p#notice.alert.alert-success= notice
+        -if flash[:error].present?
+          %p#error.alert-error= error
+        -if flash[:warning].present?
+          %p#warning.alert= warning
 
   .container
     =yield

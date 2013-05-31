@@ -20,6 +20,9 @@
 # Learn more: http://github.com/javan/whenever
 
 env :MAILTO, 'oyevega@gmail.com'
+env :GEM_HOME, '/home/ojcar/webapps/nacho/gems'
+env :RUBYLIB, '/home/ojcar/webapps/nacho/lib'
+env :PATH, "/home/ojcar/webapps/nacho/bin:$PATH"
 
 every 12.hours do
   rake "feeds:update"

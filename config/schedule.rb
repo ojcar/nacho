@@ -23,7 +23,7 @@ env :MAILTO, 'oyevega@gmail.com'
 env :GEM_HOME, '/home/nerduchis/webapps/nacho/gems'
 env :RUBYLIB, '/home/nerduchis/webapps/nacho/lib'
 # env :PATH, "/home/nerduchis/webapps/nacho/bin:$PATH"
-env :PATH "/home/nerduchis/webapps/nacho/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/nerduchis/bin"
+env :PATH, "/home/nerduchis/webapps/nacho/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/nerduchis/bin"
 
 every 12.hours do
   rake "feeds:update"
